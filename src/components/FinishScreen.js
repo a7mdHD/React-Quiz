@@ -1,10 +1,8 @@
-function FinishScreen({
-  points,
-  maxPossiblePoints,
-  highScore,
-  status,
-  dispatch,
-}) {
+import { useQuiz } from "../contexts/QuizContext";
+
+function FinishScreen() {
+  const { points, maxPossiblePoints, highScore, dispatch } = useQuiz();
+
   const percantage = (points / maxPossiblePoints) * 100;
 
   let emoji = "";
@@ -33,14 +31,12 @@ function FinishScreen({
         ( Highscore is <strong>{highScore}</strong> points ✨)
       </p>
 
-      {status === "finished" && (
-        <button
-          className="btn btn-ui"
-          onClick={() => dispatch({ type: "restart" })}
-        >
-          Restart Quiz
-        </button>
-      )}
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "restart" })}
+      >
+        Restart Quiz
+      </button>
     </>
   );
 }

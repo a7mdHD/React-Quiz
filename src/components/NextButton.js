@@ -1,23 +1,29 @@
-function NextButton({ dispatch, answer, questionNo, index }) {
+import { useQuiz } from "../contexts/QuizContext";
+
+function NextButton() {
+  const { answer, index, questionNo, dispatch } = useQuiz();
+
   if (answer === null) return null;
 
-  if (index < questionNo -1) return (
-    <button
-      className="btn btn-ui"
-      onClick={() => dispatch({ type: "nextQuestion" })}
-    >
-      Next
-    </button>
-  );
+  if (index < questionNo - 1)
+    return (
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "nextQuestion" })}
+      >
+        Next
+      </button>
+    );
 
-  if (index === questionNo - 1) return (
-    <button
-      className="btn btn-ui"
-      onClick={() => dispatch({ type: "finish" })}
-    >
-      Finish
-    </button>
-  );
+  if (index === questionNo - 1)
+    return (
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "finish" })}
+      >
+        Finish
+      </button>
+    );
 }
 
 export default NextButton;
